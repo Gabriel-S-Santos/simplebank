@@ -1,7 +1,5 @@
 package util
 
-
-
 import (
 	"math/rand"
 	"strings"
@@ -10,16 +8,16 @@ import (
 
 const alphabet = "abcdefghijklmnopqrstuvwxyz"
 
-func init() {
+func SeedRandom() {
 	rand.Seed(time.Now().UnixNano())
-}
+  }
 
 func RandomInt(min, max int64) int64 {
-	return min + rand.Int63n(max - min + 1)
+	return min + rand.Int63n(max-min+1)
 }
 
 func RandomString(n int) string {
-	var sb string.Builder
+	var sb strings.Builder
 	k := len(alphabet)
 
 	for i := 0; i < n; i++ {
@@ -41,7 +39,7 @@ func RandomAmmount() int64 {
 }
 
 func RandomCurrency() string {
-	currecies := ["BRL", "USD", "EUR"]
+	currecies := []string{"BRL", "USD", "EUR"}
 	n := len(currecies)
 	return currecies[rand.Intn(n)]
 }

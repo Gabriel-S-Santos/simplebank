@@ -4,14 +4,17 @@ import (
 	"context"
 	"testing"
 
+	"github.com/Gabriel-S-Santos/simplebank/tree/master/util"
 	"github.com/stretchr/testify/require"
 )
 
 func TestCreateAccount(t *testing.T) {
+	util.SeedRandom() //garante que os dados serão gerados diferentes do teste anterior
+	
 	arg := CreateAccountParams{
-		Owner:    util.RandomOwner,
-		Balance:  util.RandomAmmount,
-		Currency: util.RandomCurrency,
+		Owner:    util.RandomOwner(),
+		Balance:  util.RandomAmmount(),
+		Currency: util.RandomCurrency(),
 	}
 
 	account, err := testQuerries.CreateAccount(context.Background(), arg)
@@ -25,5 +28,3 @@ func TestCreateAccount(t *testing.T) {
 	require.NotZero(t, account.ID)
 	require.NotZero(t, account.CreatedAt)
 }
-
-
